@@ -1,0 +1,23 @@
+{
+    "name": "fjakkarin/manuscript-php-client",
+    "description": "",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jóhan Dam-Davidsen",
+            "email": "johan.davidsen@fjakkarin.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^8.4",
+        "guzzlehttp/guzzle": "^6.4",
+        "ext-json": "*",
+        "tightenco/collect": "^6.5",
+        "vlucas/phpdotenv": "^3.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fjakkarin\\Manuscript\\": "src/"
+        }
+    }
+}
