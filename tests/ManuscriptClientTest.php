@@ -9,6 +9,9 @@ use Fjakkarin\Manuscript\ManuscriptClient;
 class ManuscriptClientTest extends TestCase
 {
 
+    /**
+     * @var ManuscriptClient
+     */
     private $client;
 
     /**
@@ -31,8 +34,12 @@ class ManuscriptClientTest extends TestCase
         $this->assertEquals(44, sizeof($milestones));
     }
 
+    /**
+     * @test
+     */
     public function do_get_all_projects ()
     {
         $projects = $this->client->getAllProjects();
+        $this->assertEquals(43, sizeof($projects));
     }
 }

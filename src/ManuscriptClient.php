@@ -3,6 +3,7 @@
 namespace Fjakkarin\Manuscript;
 
 use Fjakkarin\Manuscript\Model\Milestone;
+use Fjakkarin\Manuscript\Model\Projects;
 use GuzzleHttp\Client;
 use Tightenco\Collect\Support\Collection;
 
@@ -12,7 +13,14 @@ use Tightenco\Collect\Support\Collection;
  */
 class ManuscriptClient
 {
+    /**
+     * @var Client
+     */
     private $client;
+
+    /**
+     * @var String
+     */
     private $token;
 
     /**
@@ -32,9 +40,12 @@ class ManuscriptClient
         ]);
     }
 
+    /**
+     *
+     */
     public function getAllProjects ()
     {
-        $respone = $this->client->post('', [
+        $respone = $this->client->post('api/listProjects', [
             'json' => [
                 'token' => $this->token
             ]
@@ -42,7 +53,13 @@ class ManuscriptClient
 
         if ($respone->getStatusCode() === 200)
         {
+            $col = new Collection(json_decode($respone->getBody()->getContents(), true)["data"]["projects"]);
 
+            $col->transform(function ($item) {
+                return new Projects($item);
+            });
+
+            return $col->all();
         }
     }
 
@@ -59,7 +76,6 @@ class ManuscriptClient
 
         if ($response->getStatusCode() === 200)
         {
-            // Access the right data variables
             $col = new Collection(json_decode($response->getBody()->getContents(), true)["data"]["fixfors"]);
 
             $col->transform(function ($item) {
