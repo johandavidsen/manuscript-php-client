@@ -31,7 +31,7 @@ class ManuscriptClientTest extends TestCase
     public function do_get_all_milestones()
     {
         $milestones = $this->client->getAllMilestones();
-        $this->assertEquals(43, sizeof($milestones));
+        $this->assertIsArray($milestones);
     }
 
     /**
@@ -40,7 +40,7 @@ class ManuscriptClientTest extends TestCase
     public function do_get_all_projects()
     {
         $projects = $this->client->getAllProjects();
-        $this->assertEquals(43, sizeof($projects));
+        $this->assertIsArray($projects);
     }
 
     /**
@@ -49,7 +49,7 @@ class ManuscriptClientTest extends TestCase
     public function do_get_all_filters()
     {
         $filters = $this->client->getAllFilters();
-        $this->assertEquals(10, sizeof($filters));
+        $this->assertIsArray($filters);
     }
 
 }
