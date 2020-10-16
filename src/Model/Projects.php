@@ -10,6 +10,7 @@ class Projects
 {
     private $id;
     private $title;
+    private $owner;
     private $deleted;
 
     /**
@@ -20,6 +21,21 @@ class Projects
     {
         $this->id = isset($items["ixProject"]) ? $items["ixProject"] : null;
         $this->title = isset($items["sProject"]) ? $items["sProject"] : null;
-        $this->deleted = isset($items["fDeleted"]);
+        $this->owner = new User($items);
+        $this->deleted = $items["fDeleted"];
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getTitle() {
+        return $this->title;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getId() {
+        return $this->id;
     }
 }

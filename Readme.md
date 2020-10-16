@@ -1,1 +1,1 @@
-# 
+# Manuscript API Client
