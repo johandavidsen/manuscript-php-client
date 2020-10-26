@@ -20,7 +20,7 @@ class ManuscriptClientTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        if (strcmp(getenv('CI'), 'true') !== true) {
+        if (file_exists(__DIR__ . '/../.env')) {
             $dotenv = Dotenv\Dotenv::create(__DIR__ . '/..');
             $dotenv->load();
         }
