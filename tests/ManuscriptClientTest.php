@@ -20,8 +20,10 @@ class ManuscriptClientTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $dotenv = Dotenv\Dotenv::create(__DIR__ . '/../');
-        $dotenv->load();
+        if (getenv('CI') !== true) {
+            $dotenv = Dotenv\Dotenv::create(__DIR__ . '/..');
+            $dotenv->load();
+        }
         $this->client = new ManuscriptClient(getenv("MANUSCRIPT_LINK"), getenv("MANUSCRIPT_TOKEN"));
     }
 
