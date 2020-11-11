@@ -3,7 +3,7 @@
     "description": "This is a PHP API library to api.manuscript.com.",
     "type": "library",
     "license": "MIT",
-    "version": "0.2.0",
+    "version": "v0.2.0",
     "authors": [
         {
             "name": "Jóhan Dam-Davidsen",
