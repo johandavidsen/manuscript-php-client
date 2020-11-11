@@ -6,6 +6,8 @@ use Fjakkarin\Manuscript\Model\Filter;
 use Fjakkarin\Manuscript\Model\Milestone;
 use Fjakkarin\Manuscript\Model\Projects;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 use Tightenco\Collect\Support\Collection;
 
 /**
@@ -27,7 +29,7 @@ class ManuscriptClient
     /**
      * ManuscriptClient constructor.
      * @param String $url
-     * @param String $token
+     * @param String|null $token
      */
     public function __construct(String $url = "https://apisandbox.manuscript.com/", String $token = null)
     {
@@ -43,6 +45,7 @@ class ManuscriptClient
 
     /**
      * @return array
+     * @throws GuzzleException
      */
     public function getAllProjects()
     {
@@ -61,6 +64,7 @@ class ManuscriptClient
 
     /**
      * @return array
+     * @throws GuzzleException
      */
     public function getAllMilestones()
     {
@@ -68,7 +72,7 @@ class ManuscriptClient
 
         if ($response->getStatusCode() === 200) {
             $col = new Collection(json_decode($response->getBody()->getContents(), true)["data"]["fixfors"]);
-            //dd($col);
+
             $col->transform(function ($item) {
                 return new Milestone($item);
             });
@@ -79,6 +83,7 @@ class ManuscriptClient
 
     /**
      * @return array
+     * @throws GuzzleException
      */
     public function getAllFilters()
     {
@@ -104,7 +109,8 @@ class ManuscriptClient
 
     /**
      * @param string $url
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
+     * @throws GuzzleException
      */
     private function makeAPICall(string $url)
     {

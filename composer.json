@@ -1,7 +1,8 @@
 {
     "name": "fjakkarin/manuscript-php-client",
-    "description": "",
+    "description": "This is a PHP API library to api.manuscript.com.",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Jóhan Dam-Davidsen",
@@ -9,11 +10,13 @@
         }
     ],
     "require": {
-        "phpunit/phpunit": "^8.4",
-        "guzzlehttp/guzzle": "^6.4",
+        "guzzlehttp/guzzle": "^7.2",
         "ext-json": "*",
-        "tightenco/collect": "^6.5",
-        "vlucas/phpdotenv": "^3.6"
+        "tightenco/collect": "^8.0",
+        "vlucas/phpdotenv": "^5.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4"
     },
     "autoload": {
         "psr-4": {
