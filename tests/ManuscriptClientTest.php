@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use Dotenv\Dotenv;
 use Fjakkarin\Manuscript\ManuscriptClient;
 
 /**
@@ -21,14 +22,16 @@ class ManuscriptClientTest extends TestCase
     {
         parent::setUp();
         if (file_exists(__DIR__ . '/../.env')) {
-            $dotenv = Dotenv\Dotenv::create(__DIR__ . '/..');
+            $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
             $dotenv->load();
         }
-        $this->client = new ManuscriptClient(getenv("MANUSCRIPT_LINK"), getenv("MANUSCRIPT_TOKEN"));
+
+        $this->client = new ManuscriptClient($_ENV["MANUSCRIPT_LINK"], $_ENV["MANUSCRIPT_TOKEN"]);
     }
 
     /**
      * @test
+     * @covers \Fjakkarin\Manuscript\ManuscriptClient::getAllMilestones
      */
     public function do_get_all_milestones()
     {
@@ -38,6 +41,7 @@ class ManuscriptClientTest extends TestCase
 
     /**
      * @test
+     * @covers \Fjakkarin\Manuscript\ManuscriptClient::getAllProjects
      */
     public function do_get_all_projects()
     {
@@ -47,6 +51,7 @@ class ManuscriptClientTest extends TestCase
 
     /**
      * @test
+     * @covers \Fjakkarin\Manuscript\ManuscriptClient::getAllFilters
      */
     public function do_get_all_filters()
     {
